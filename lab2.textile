@@ -91,11 +91,11 @@ stop: b stop
 *sum-sub.s*:
 
 <pre><code>
-@ Аргументы
+@ Аргументы:
 @ r0: Начальный адрес массива
 @ r1: Конечный адрес массива
 
-@ Результат
+@ Результат:
 @ r3: Сумма элементов массива
 
 	.global sum
@@ -104,7 +104,7 @@ loop: 	ldrb r2, [r0], #1 	@ r2 = *r0++; Загрузка элемента мас
 	add r3, r2, r3 		@ r3 += r2; Вычисление суммы
 	cmp r0, r1 		@ if(r0 != r1); Проверка на конец массива
 	bne loop 		@ Цикл, аналог «goto loop» архитектуры х86
-	mov pc, lr 		@pc = lr; Возврат по окончании
+	mov pc, lr 		@ pc = lr; Возврат по окончании
 </code></pre>
 
 С помощью директивы <code>.global</code> мы задали видимость объявленных в функции переменных для других файлов. Теперь компилируем фалы и просмотрим таблицу символов с помощью команды <code>nm</code>.
@@ -169,7 +169,7 @@ $ arm-none-linux-gnueabi-nm sum.elf
 00000020 T sum
 </code></pre>
 
-Символ loop имеет адрес <code>0x4</code> в файле <code>sum-sub.o</code> и <code>0x24</code> в <code>sum.elf</code>, так как секция <code>.text</code> файла <code>sum-sub.o</code> переместилась и располагается сразу после секции <code>.text</code> файла <code>main.o</code>.
+Символ <code>loop</code> имеет адрес <code>0x4</code> в файле <code>sum-sub.o</code> и <code>0x24</code> в <code>sum.elf</code>, так как секция <code>.text</code> файла <code>sum-sub.o</code> переместилась и располагается сразу после секции <code>.text</code> файла <code>main.o</code>.
 
 h4. Размещение секций
 
