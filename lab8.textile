@@ -187,7 +187,6 @@ init_bss:
 	ldr r2, =bss_size
 
 	@@ Если bss_size == 0
-
 	cmp r2, #0
 	beq init_stack
 
